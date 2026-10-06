@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sapa/bottom/bottom.dart';
+import 'package:sapa/home/home.dart';
 import 'package:sapa/theme/app_colors.dart';
 
 class Login extends StatefulWidget {
@@ -172,23 +174,21 @@ class _LoginState extends State<Login> {
                               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                             ),
                             onPressed: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => const LupaPasswordPage(),
-                              //   ),
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Fitur Dashboard belum tersedia')),
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Bottom(),
+                                ),
                               );
                             },
-                            child:
+                            child: 
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                spacing: 6,
                                 children: [
                                   Text('Masuk ke SAPA'),
-                                  Icon(Icons.arrow_forward)
-                                ]
+                                  SizedBox(width: 6),
+                                  Icon(Icons.arrow_forward),
+                                ],
                               ),
                             ),
                         ),

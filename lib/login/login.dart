@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sapa/bottom/bottom.dart';
+import 'package:sapa/login/regist.dart';
 import 'package:sapa/theme/app_colors.dart';
 
 class Login extends StatefulWidget {
@@ -14,7 +15,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -65,17 +65,17 @@ class _LoginState extends State<Login> {
                           color: Color(0x26000000),
                           blurRadius: 12,
                           offset: Offset(0, 4),
-                        )
-                      ]
+                        ),
+                      ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Email / Akun Kampus", 
+                          "Email / Akun Kampus",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 6,),
+                        SizedBox(height: 6),
                         TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -102,7 +102,7 @@ class _LoginState extends State<Login> {
                           "Kata Sandi",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 6,),
+                        SizedBox(height: 6),
                         TextField(
                           obscureText: _passwordTersembunyi,
                           decoration: InputDecoration(
@@ -124,15 +124,15 @@ class _LoginState extends State<Login> {
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _passwordTersembunyi
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
                               ),
-                                onPressed:  () {
-                                  setState(() {
-                                    _passwordTersembunyi = !_passwordTersembunyi;
-                                  });
-                                },
-                            ), 
+                              onPressed: () {
+                                setState(() {
+                                  _passwordTersembunyi = !_passwordTersembunyi;
+                                });
+                              },
+                            ),
                           ),
                         ),
 
@@ -140,13 +140,20 @@ class _LoginState extends State<Login> {
                           alignment: Alignment.centerRight,
                           child: TextButton(
                             style: ButtonStyle(
-                              overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-                              foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
-                                if (states.contains(WidgetState.pressed)) {
-                                  return AppColors.hijau.withValues(alpha: 0.6);
-                                }
-                                return AppColors.hijau;
-                              }),
+                              overlayColor: const WidgetStatePropertyAll(
+                                Colors.transparent,
+                              ),
+                              foregroundColor:
+                                  WidgetStateProperty.resolveWith<Color>((
+                                    states,
+                                  ) {
+                                    if (states.contains(WidgetState.pressed)) {
+                                      return AppColors.hijau.withValues(
+                                        alpha: 0.6,
+                                      );
+                                    }
+                                    return AppColors.hijau;
+                                  }),
                             ),
                             onPressed: () {
                               // Navigator.push(
@@ -155,7 +162,11 @@ class _LoginState extends State<Login> {
                               //     builder: (context) => const LupaPasswordPage(),
                               //   ),
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Fitur lupa password belum tersedia')),
+                                const SnackBar(
+                                  content: Text(
+                                    'Fitur lupa password belum tersedia',
+                                  ),
+                                ),
                               );
                             },
                             child: const Text('Lupa Password?'),
@@ -169,8 +180,13 @@ class _LoginState extends State<Login> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.hijau,
                               foregroundColor: Colors.white,
-                              overlayColor: Colors.black.withValues(alpha: 0.15),
-                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                              overlayColor: Colors.black.withValues(
+                                alpha: 0.15,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24,
+                                vertical: 14,
+                              ),
                             ),
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -180,16 +196,15 @@ class _LoginState extends State<Login> {
                                 ),
                               );
                             },
-                            child: 
-                              const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Masuk ke SAPA'),
-                                  SizedBox(width: 6),
-                                  Icon(Icons.arrow_forward),
-                                ],
-                              ),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Masuk ke SAPA'),
+                                SizedBox(width: 6),
+                                Icon(Icons.arrow_forward),
+                              ],
                             ),
+                          ),
                         ),
 
                         const SizedBox(height: 16),
@@ -212,7 +227,9 @@ class _LoginState extends State<Login> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFF0F5F1),
                               foregroundColor: Colors.black,
-                              overlayColor: Colors.black.withValues(alpha: 0.15),
+                              overlayColor: Colors.black.withValues(
+                                alpha: 0.15,
+                              ),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
@@ -225,7 +242,11 @@ class _LoginState extends State<Login> {
                               //     builder: (context) => const LupaPasswordPage(),
                               //   ),
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Fitur Dashboard belum tersedia')),
+                                const SnackBar(
+                                  content: Text(
+                                    'Fitur Dashboard belum tersedia',
+                                  ),
+                                ),
                               );
                             },
                             child: Row(
@@ -249,20 +270,46 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(text: 'Belum punya akun? '),
-                        TextSpan(
-                          text: 'Daftar Sekarang',
-                          style: TextStyle(
-                            color: AppColors.hijau,
-                            fontWeight: FontWeight.w600,
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      const Text('Belum punya akun?'),
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.resolveWith<Color?>((states) {
+                                if (states.contains(WidgetState.pressed)) {
+                                  return AppColors.hijau.withValues(alpha: 0.6);
+                                }
+                                return AppColors.hijau;
+                              }),
+                          overlayColor: const WidgetStatePropertyAll(
+                            Colors.transparent,
+                          ),
+                          padding: const WidgetStatePropertyAll(
+                            EdgeInsets.symmetric(horizontal: 4),
+                          ),
+                          minimumSize: const WidgetStatePropertyAll(
+                            Size(0, 48),
+                          ),
+                          textStyle: const WidgetStatePropertyAll(
+                            TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ),
-                      ],
-                    ),
-                    textAlign: TextAlign.center,
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const Regist(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Daftar Sekarang',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   Container(

@@ -3,6 +3,7 @@ import 'package:sapa/home/home.dart';
 import 'package:sapa/explore/explore.dart';
 import 'package:sapa/profile/profile.dart';
 import 'package:sapa/request/request.dart';
+import 'package:sapa/theme/app_colors.dart';
 
 class Bottom extends StatefulWidget {
   const Bottom({super.key});
@@ -35,7 +36,7 @@ class _BottomState extends State<Bottom> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _pindah,
         onTap: _pindahPage,
-        selectedItemColor: Colors.green,
+        selectedItemColor: AppColors.hijau,
         unselectedItemColor: Colors.grey[500],
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),

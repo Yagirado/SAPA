@@ -20,22 +20,6 @@ class _RegistState extends State<Regist> {
   bool _konfirmasiTersembunyi = true;
   bool _menyetujuiSyarat = false;
 
-  int get _kekuatanPassword {
-    final password = _passwordController.text;
-    if (password.isEmpty) return 0;
-
-    var nilai = password.length >= 8 ? 1 : 0;
-    if (RegExp(r'[A-Z]').hasMatch(password) &&
-        RegExp(r'[a-z]').hasMatch(password)) {
-      nilai++;
-    }
-    if (RegExp(r'\d').hasMatch(password) ||
-        RegExp(r'[^A-Za-z0-9]').hasMatch(password)) {
-      nilai++;
-    }
-    return nilai;
-  }
-
   @override
   void dispose() {
     _namaController.dispose();
@@ -380,7 +364,7 @@ class _RegistState extends State<Regist> {
                         overlayColor: Colors.white.withValues(alpha: 0.16),
                         shape: const StadiumBorder(),
                       ),
-                      onPressed: _submit,
+                      onPressed: _menyetujuiSyarat ? _submit : null,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

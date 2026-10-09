@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sapa/bottom/bottom.dart';
+import 'package:sapa/login/forgotpassword.dart';
+import 'package:sapa/login/identity.dart';
 import 'package:sapa/login/regist.dart';
 import 'package:sapa/theme/app_colors.dart';
 
@@ -156,16 +157,10 @@ class _LoginState extends State<Login> {
                                   }),
                             ),
                             onPressed: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => const LupaPasswordPage(),
-                              //   ),
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    'Fitur lupa password belum tersedia',
-                                  ),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (_) => const ForgotPassword(),
                                 ),
                               );
                             },
@@ -189,10 +184,10 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Bottom(),
+                                  builder: (context) => const Identity(),
                                 ),
                               );
                             },

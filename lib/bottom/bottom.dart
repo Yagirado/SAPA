@@ -37,7 +37,7 @@ class _BottomState extends State<Bottom> {
         currentIndex: _pindah,
         onTap: _pindahPage,
         selectedItemColor: AppColors.hijau,
-        unselectedItemColor: Colors.grey[500],
+        unselectedItemColor: AppColors.hijau.withValues(alpha: 0.6),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: "Jelajah"),

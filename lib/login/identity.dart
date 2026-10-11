@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sapa/bottom/bottom.dart';
 import 'package:sapa/home/home.dart';
 import 'package:sapa/theme/app_colors.dart';
 
@@ -426,7 +427,7 @@ class _IdentityState extends State<Identity> {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(
-        builder: (_) => const HomePage(),
+        builder: (_) => const Bottom(),
       ),
     );
   }

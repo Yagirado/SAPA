@@ -12,7 +12,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byTooltip('Kembali ke login'), findsOneWidget);
-    expect(find.text('Daftar Akun KosBerbagi 🌱'), findsOneWidget);
+    expect(find.text('Daftar Akun SAPA 🌱'), findsOneWidget);
     expect(find.text('Belum punya akun?'), findsNothing);
   });
 }

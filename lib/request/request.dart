@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:sapa/theme/app_colors.dart';
 
-// Data riwayat permintaan 
-List<Map<String, String>> daftarPermintaan = [];
+// Data dummy riwayat permintaan
+List<Map<String, String>> daftarPermintaan = [
+  {
+    'nama': 'Rice Cooker Mini',
+    'alasan': 'Butuh untuk masak nasi harian di kosan',
+    'kontak': '081234567890',
+    'status': 'Menunggu',
+  },
+  {
+    'nama': 'Kasur Busa Single',
+    'alasan': 'Kasur lama di kosan sudah kempes',
+    'kontak': '089876543210',
+    'status': 'Disetujui',
+  },
+];
 
 class RequestPage extends StatefulWidget {
   const RequestPage({super.key});

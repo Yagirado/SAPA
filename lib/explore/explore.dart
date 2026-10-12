@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sapa/theme/app_colors.dart';
-import 'package:sapa/request/request.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
 
   void _tampilkanFormMinta(BuildContext context, String namaBarang) {
-    final TextEditingController alasanCtrl = TextEditingController();
-    final TextEditingController kontakCtrl = TextEditingController();
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -24,30 +20,28 @@ class ExplorePage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'Alasan Membutuhkan:',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 TextField(
-                  controller: alasanCtrl,
                   maxLines: 2,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Contoh: Butuh untuk masak di kosan...',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                const SizedBox(height: 12),
-                const Text(
+                SizedBox(height: 12),
+                Text(
                   'Nomor WhatsApp:',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 TextField(
-                  controller: kontakCtrl,
                   keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Contoh: 08123456789',
                     border: OutlineInputBorder(),
                   ),
@@ -68,18 +62,6 @@ class ExplorePage extends StatelessWidget {
                 foregroundColor: Colors.white,
               ),
               onPressed: () {
-                // Menambahkan data baru ke daftar permintaan (In-Memory)
-                daftarPermintaan.add({
-                  'nama': namaBarang,
-                  'alasan': alasanCtrl.text.trim().isEmpty
-                      ? 'Kebutuhan perlengkapan kos'
-                      : alasanCtrl.text.trim(),
-                  'kontak': kontakCtrl.text.trim().isEmpty
-                      ? '-'
-                      : kontakCtrl.text.trim(),
-                  'status': 'Menunggu',
-                });
-
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

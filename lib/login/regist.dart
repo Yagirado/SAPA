@@ -84,7 +84,7 @@ class _RegistState extends State<Regist> {
                   const SizedBox(height: 12),
                   const Center(
                     child: Text(
-                      'Daftar Akun KosBerbagi 🌱',
+                      'Daftar Akun SAPA 🌱',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 23,
@@ -336,7 +336,7 @@ class _RegistState extends State<Regist> {
                                 const TextSpan(text: ' serta '),
                                 TextSpan(
                                   text:
-                                      'Panduan Etika Saling Menjaga KosBerbagi',
+                                      'Panduan Etika Saling Menjaga SAPA',
                                   style: TextStyle(
                                     color: AppColors.hijau,
                                     fontWeight: FontWeight.w700,

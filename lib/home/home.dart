@@ -1,121 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:sapa/theme/app_colors.dart';
 import 'package:sapa/item/item.dart';
+import 'package:sapa/theme/app_colors.dart';
 
-const List<Barang> _daftarBarangBaru = [
-  Barang(
-    gambar: ['assets/images/rakSepatu.jpeg'],
-    kategori: ['Furniture Kos'],
-    judul: 'Rak Sepatu Besi Susun 4',
-    lokasi: 'Adiarsa Barat',
-    jarak: '1,2 km dari lokasimu',
-    kondisi: 'Masih Kokoh',
-    cerita: 'Rak sepatu besi 4 tingkat. Masih sangat kokoh dan tidak goyang. Dijual karena sudah punya rak yang lebih besar.',
-    waktuPost: '3 jam lalu',
-    statusPill: 'Tersedia',
-    donaturNama: 'Nugi',
-    donaturInstitusi: 'Mahasiswa Teknik UNSIKA',
-    donaturAvatar: 'assets/images/fahri.png',
-  ),
-  Barang(
-    gambar: ['assets/images/lampu.png'],
-    kategori: ['Elektronik'],
-    judul: 'Lampu Belajar Meja LED',
-    lokasi: 'Puri Telukjambe',
-    jarak: '0,8 km dari lokasimu',
-    kondisi: 'Terang & Normal',
-    cerita: 'Lampu belajar LED dengan 3 tingkat kecerahan. Sangat membantu untuk belajar di malam hari tanpa mengganggu teman sekamar.',
-    waktuPost: '5 jam lalu',
-    statusPill: 'Tersedia',
-    donaturNama: 'Arya',
-    donaturInstitusi: 'Mahasiswa Hukum UNSIKA',
-    donaturAvatar: 'assets/images/fahri.png',
-  ),
-  Barang(
-    gambar: ['assets/images/lemari.jpeg'],
-    kategori: ['Perlengkapan Kos'],
-    judul: 'Lemari Baju Lipat Portable',
-    lokasi: 'Mahkota Regency',
-    jarak: '2,1 km dari lokasimu',
-    kondisi: 'Praktis',
-    cerita: 'Lemari kain portable, mudah dibongkar pasang. Cocok untuk yang sering pindah-pindah kos.',
-    waktuPost: '1 hari lalu',
-    statusPill: 'Tersedia',
-    donaturNama: 'PLi',
-    donaturInstitusi: 'Mahasiswa Ekonomi UNSIKA',
-    donaturAvatar: 'assets/images/fahri.png',
-  ),
-  Barang(
-    gambar: ['assets/images/kasur.jpg'],
-    kategori: ['Furniture'],
-    judul: 'Kasur Busa Single',
-    lokasi: 'Mahkota',
-    jarak: '2,0 km dari lokasimu',
-    kondisi: 'Bersih & Empuk',
-    cerita: 'Kasur busa ukuran single. Masih bersih dan tidak kempes. Sudah termasuk sprei jika mau.',
-    waktuPost: '2 hari lalu',
-    statusPill: 'Tersedia',
-    donaturNama: 'Nando',
-    donaturInstitusi: 'Mahasiswa Teknik UNSIKA',
-    donaturAvatar: 'assets/images/fahri.png',
-  ),
-];
-
-const Barang _barangDekat = Barang(
-  gambar: ['assets/images/magicom.jpeg'],
-  judul: 'Rice Cooker Cosmos 1,2L & Centong Nasi',
-  jarak: '0,5 km dari Kampus UI',
-  lokasi: 'Kukusan Teknik, Depok',
-  kondisi: 'Baik',
-  kategori: ['Elektronik', 'Peralatan Masak'],
-  cerita: 'Rice cooker masih berfungsi sangat baik untuk masak nasi dan mengukus. Digunakan sekitar 1 tahun di kos lama. Berhubung sudah lulus dan akan kembali ke kampung halaman, barang ini ingin saya hibahkan ke adik tingkat atau sesama anak kos yang membutuhkan. Sudah dibersihkan tuntas dan siap pakai.',
-  waktuPost: '2 jam lalu',
-  statusPill: 'Tersedia',
-  donaturNama: 'Andi Pratama',
-  donaturInstitusi: 'Mahasiswa Teknik Komputer, Universitas Indonesia',
-  donaturAvatar: 'assets/images/fahri.png',
-  jumlahBarang: 1,
-);
-
-class _Kategori {
-  final IconData ikon;
-  final String label;
-  final String sub;
-
-  const _Kategori(this.ikon, this.label, this.sub);
-}
-
-const List<_Kategori> _daftarKategori = [
-  _Kategori(Icons.chair_outlined, 'Perlengkapan', 'Kos'),
-  _Kategori(Icons.soup_kitchen_outlined, 'Peralatan', 'Masak'),
-  _Kategori(Icons.devices_other_outlined, 'Elektronik', 'Gadget'),
-  _Kategori(Icons.bed_outlined, 'Furniture', 'Kamar'),
-  _Kategori(Icons.edit_note_outlined, 'Alat Tulis', 'Belajar'),
-];
-
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  void _belumTersedia(String aksi) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$aksi belum tersedia'),
-        backgroundColor: AppColors.hijau,
-        duration: const Duration(seconds: 1),
-      ),
-    );
-  }
-
-  void _bukaDetail(Barang barang) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DetailItem(barang: barang),
+  Widget _buatKategori(IconData ikon, String nama) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 12),
+      child: Column(
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              color: AppColors.latarInput,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(ikon, color: AppColors.hijau, size: 26),
+          ),
+          const SizedBox(height: 6),
+          Text(nama, style: const TextStyle(fontSize: 11)),
+        ],
       ),
     );
   }
@@ -124,536 +30,267 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.latar,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 90),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const _Header(),
-              const SizedBox(height: 20),
-              const _Greeting(),
-              const SizedBox(height: 20),
-              _SectionHeader(
-                judul: 'Kategori Perlengkapan',
-                trailing: TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: AppColors.hijau,
-                    padding: EdgeInsets.zero,
-                    minimumSize: const Size(0, 0),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  onPressed: () => _belumTersedia('Semua kategori'),
-                  child: const Text(
-                    'Semua',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                height: 96,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _daftarKategori.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: 12),
-                  itemBuilder: (context, index) {
-                    final item = _daftarKategori[index];
-                    return _KategoriTile(
-                      item: item,
-                      onTap: () => _belumTersedia(item.label),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 24),
-              _SectionHeader(
-                judul: 'Dekat Kampusmu',
-                trailing: _Pill(
-                  teks: '+1,5 km',
-                  bg: AppColors.hijau,
-                  fg: Colors.white,
-                  ikon: Icons.near_me,
-                ),
-              ),
-              const SizedBox(height: 12),
-              _KartuDekat(
-                barang: _barangDekat,
-                onDetail: () => _bukaDetail(_barangDekat),
-              ),
-              const SizedBox(height: 24),
-              _SectionHeader(
-                judul: 'Baru Ditambahkan',
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(Icons.bolt, size: 14, color: AppColors.hijau),
-                    SizedBox(width: 2),
-                    Text(
-                      'Real-time update',
-                      style: TextStyle(fontSize: 11, color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              ..._daftarBarangBaru.map(
-                (barang) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: _KartuBaru(
-                    barang: barang,
-                    onTap: () => _bukaDetail(barang),
-                    onAjukan: () => _belumTersedia('Ajukan pinjam'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _Header extends StatelessWidget {
-  const _Header();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: SizedBox(
-            height: 44,
-            child: TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: AppColors.latarInput,
-                hintText: 'Cari perlengkapan kos...',
-                hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                  size: 20,
-                ),
-                contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(
-                    color: AppColors.hijau,
-                    width: 1,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        ClipOval(
+      appBar: AppBar(
+        backgroundColor: AppColors.latar,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(12.0),
           child: Image.asset(
-            'assets/images/fahri.png',
-            width: 44,
-            height: 44,
-            fit: BoxFit.cover,
+            'assets/icons/logo1.png',
+            fit: BoxFit.contain,
           ),
         ),
-      ],
-    );
-  }
-}
-
-class _Greeting extends StatelessWidget {
-  const _Greeting();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'Hi, Andi Pratama 👋',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        title: const Text(
+          'Hi, Nando🖐',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 4),
-        Text(
-          'Siap berbagi? Cek barang di sekitar kosanmu hari ini.',
-          style: TextStyle(fontSize: 12, color: Colors.grey),
-        ),
-      ],
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  final String judul;
-  final Widget? trailing;
-
-  const _SectionHeader({required this.judul, this.trailing});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          judul,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-        ),
-        ?trailing,
-      ],
-    );
-  }
-}
-
-class _KategoriTile extends StatelessWidget {
-  final _Kategori item;
-  final VoidCallback onTap;
-
-  const _KategoriTile({required this.item, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: SizedBox(
-        width: 72,
-        child: Column(
-          children: [
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: AppColors.latarInput,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Icon(item.ikon, color: AppColors.hijau, size: 26),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              item.label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, height: 1.15),
-            ),
-            Text(
-              item.sub,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 10, color: Colors.grey, height: 1.15),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _KartuDekat extends StatelessWidget {
-  final Barang barang;
-  final VoidCallback onDetail;
-
-  const _KartuDekat({required this.barang, required this.onDetail});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x14000000),
-            blurRadius: 10,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
-                ),
-                child: Image.asset(
-                  barang.gambar.first,
-                  width: double.infinity,
-                  height: 150,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                top: 10,
-                left: 10,
-                child: _Pill(
-                  teks: 'Gratis Dihibahkan',
-                  bg: AppColors.hijau,
-                  fg: Colors.white,
-                  ikon: Icons.card_giftcard,
-                ),
-              ),
-              Positioned(
-                bottom: 10,
-                right: 10,
-                child: _Pill(
-                  teks: 'Kondisi ${barang.kondisi}',
-                  bg: Colors.white.withValues(alpha: 0.9),
-                  fg: AppColors.hijau,
-                ),
-              ),
-            ],
-          ),
+        actions: [
           Padding(
-            padding: const EdgeInsets.all(14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  barang.judul,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.location_on,
-                      size: 14,
-                      color: Colors.grey,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      barang.jarak,
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ],
-                ),
-                const Divider(height: 20),
-                Row(
-                  children: [
-                    ClipOval(
-                      child: Image.asset(
-                        barang.donaturAvatar,
-                        width: 32,
-                        height: 32,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            barang.donaturNama,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            barang.donaturInstitusi,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.hijau,
-                        side: const BorderSide(color: AppColors.hijau),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 0,
-                        ),
-                        minimumSize: const Size(0, 34),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: onDetail,
-                      icon: const Text(
-                        'Lihat Detail',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      label: const Icon(Icons.arrow_forward, size: 14),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _KartuBaru extends StatelessWidget {
-  final Barang barang;
-  final VoidCallback onTap;
-  final VoidCallback onAjukan;
-
-  const _KartuBaru({required this.barang, required this.onTap, required this.onAjukan});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
+            padding: const EdgeInsets.only(right: 16),
+            child: ClipOval(
               child: Image.asset(
-                barang.gambar.first,
-                width: 64,
-                height: 64,
+                'assets/images/fahri.png',
+                width: 36,
+                height: 36,
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Siap berbagi? Cek barang di sekitar kosanmu hari ini.',
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+            const SizedBox(height: 20),
+
+            const Text(
+              'Kategori Perlengkapan',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
                 children: [
-                  Text(
-                    barang.kategori.first,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.hijau,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    barang.judul,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
+                  _buatKategori(Icons.chair_outlined, 'Perlengkapan'),
+                  _buatKategori(Icons.soup_kitchen_outlined, 'Peralatan'),
+                  _buatKategori(Icons.devices_other_outlined, 'Elektronik'),
+                  _buatKategori(Icons.bed_outlined, 'Furniture'),
+                  _buatKategori(Icons.edit_note_outlined, 'Alat Tulis'),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Daftar barang
+            const Text(
+              'Barang Terbaru',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+
+            // Rice Cooker
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(
-                        Icons.location_on,
-                        size: 12,
-                        color: Colors.grey,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/magicom.jpeg',
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 12),
                       Expanded(
-                        child: Text(
-                          barang.lokasi,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: Colors.grey,
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Rice Cooker Mini',
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: const [
+                                Icon(Icons.location_on, size: 14, color: Colors.grey),
+                                SizedBox(width: 4),
+                                Text('Adiarsa Barat', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                              ],
+                            ),
+                            const SizedBox(height: 2),
+                            Row(
+                              children: const [
+                                Icon(Icons.person, size: 14, color: Colors.grey),
+                                SizedBox(width: 4),
+                                Text('Andi Pratama', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.green.shade50,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: const Text(
+                                'Layak Pakai',
+                                style: TextStyle(fontSize: 11, color: AppColors.hijau, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _Pill(
-                        teks: barang.statusPill,
-                        bg: Colors.green.shade50,
-                        fg: AppColors.hijau,
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 40,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.hijau,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.hijau,
-                          side: const BorderSide(color: AppColors.hijau),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailPage(
+                              gambar: 'assets/images/magicom.jpeg',
+                              judul: 'Rice Cooker Mini',
+                              lokasi: 'Adiarsa Barat',
+                              jarak: '0,5 km dari Kampus UNSIKA',
+                              kondisi: 'Layak Pakai',
+                              cerita: 'Rice cooker masih berfungsi sangat baik untuk masak nasi dan mengukus. Dipakai sekitar 1 tahun. Mau dihibahkan ke adik tingkat yang membutuhkan.',
+                              donatur: 'Andi Pratama',
+                            ),
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          minimumSize: const Size(0, 30),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        );
+                      },
+                      child: const Text('Lihat Detail'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // Kasur
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/kasur.jpg',
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.cover,
                         ),
-                        onPressed: onAjukan,
-                        child: const Text(
-                          'Ajukan Pinjam',
-                          style: TextStyle(fontSize: 11),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Kasur Busa Single',
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: const [
+                                Icon(Icons.location_on, size: 14, color: Colors.grey),
+                                SizedBox(width: 4),
+                                Text('Mahkota', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                              ],
+                            ),
+                            const SizedBox(height: 2),
+                            Row(
+                              children: const [
+                                Icon(Icons.person, size: 14, color: Colors.grey),
+                                SizedBox(width: 4),
+                                Text('Nando', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.green.shade50,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: const Text(
+                                'Bersih & Empuk',
+                                style: TextStyle(fontSize: 11, color: AppColors.hijau, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 40,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.hijau,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailPage(
+                              gambar: 'assets/images/kasur.jpg',
+                              judul: 'Kasur Busa Single',
+                              lokasi: 'Mahkota',
+                              jarak: '2,0 km dari lokasimu',
+                              kondisi: 'Bersih & Empuk',
+                              cerita: 'Kasur busa ukuran single. Masih bersih dan tidak kempes. Sudah termasuk sprei jika mau.',
+                              donatur: 'Nando',
+                            ),
+                          ),
+                        );
+                      },
+                      child: const Text('Lihat Detail'),
+                    ),
                   ),
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _Pill extends StatelessWidget {
-  final String teks;
-  final Color bg;
-  final Color fg;
-  final IconData? ikon;
-
-  const _Pill({
-    required this.teks,
-    required this.bg,
-    required this.fg,
-    this.ikon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (ikon != null) ...[
-            Icon(ikon, size: 12, color: fg),
-            const SizedBox(width: 4),
-          ],
-          Text(
-            teks,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.bold,
-              color: fg,
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sapa/login/login.dart';
 import 'package:sapa/theme/app_colors.dart';
 
 class ProfileSaya extends StatelessWidget {
@@ -252,6 +253,37 @@ class ProfileSaya extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 24),
+
+            // TOMBOL LOGOUT
+            SizedBox(
+              width: double.infinity,
+              height: 46,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red.shade50,
+                  foregroundColor: Colors.red.shade700,
+                  elevation: 0,
+                  side: BorderSide(color: Colors.red.shade200),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                icon: const Icon(Icons.logout, size: 20),
+                label: const Text(
+                  'Keluar dari Akun',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => const Login()),
+                    (route) => false,
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),

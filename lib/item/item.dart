@@ -99,7 +99,6 @@ class DetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Foto barang
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(

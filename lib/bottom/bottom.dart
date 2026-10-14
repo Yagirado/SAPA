@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sapa/home/home.dart';
 import 'package:sapa/explore/explore.dart';
-import 'package:sapa/profile/profile.dart';
+import 'package:sapa/profile/profilesaya.dart';
 import 'package:sapa/request/request.dart';
 import 'package:sapa/theme/app_colors.dart';
 
@@ -25,7 +25,7 @@ class _BottomState extends State<Bottom> {
     const HomePage(),
     const ExplorePage(),
     const RequestPage(),
-    const ProfilePage(),
+    const ProfileSaya(),
   ];
 
   @override

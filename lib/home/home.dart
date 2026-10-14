@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         title: const Text(
-          'Hi, Nando🖐',
+          'Dashboard',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -63,6 +63,10 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              'Hi, Albert🖐',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
+            ),
             const Text(
               'Siap berbagi? Cek barang di sekitar kosanmu hari ini.',
               style: TextStyle(fontSize: 12, color: Colors.grey),
